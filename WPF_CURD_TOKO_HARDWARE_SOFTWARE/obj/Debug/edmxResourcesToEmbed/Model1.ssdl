@@ -1,0 +1,222 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Final_Task_WPFModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="Barang">
+    <Key>
+      <PropertyRef Name="IdBarang" />
+    </Key>
+    <Property Name="IdBarang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdSupplier" Type="int" Nullable="false" />
+    <Property Name="IdAdmin" Type="int" Nullable="false" />
+    <Property Name="NamaBarang" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Stok" Type="int" Nullable="false" />
+    <Property Name="HargaSatuan" Type="int" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="DeleteDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ItemPembelian">
+    <Key>
+      <PropertyRef Name="IdItemPembelian" />
+    </Key>
+    <Property Name="IdItemPembelian" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdPembelian" Type="int" Nullable="false" />
+    <Property Name="IdAdmin" Type="int" Nullable="false" />
+    <Property Name="IdBarang" Type="int" Nullable="false" />
+    <Property Name="TotalHarga" Type="int" Nullable="false" />
+    <Property Name="QTY" Type="int" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="DeleteDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="ItemPenjualan">
+    <Key>
+      <PropertyRef Name="IdItemPenjualan" />
+    </Key>
+    <Property Name="IdItemPenjualan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="IdPenjualan" Type="int" Nullable="false" />
+    <Property Name="IdBarang" Type="int" Nullable="false" />
+    <Property Name="IdAdmin" Type="int" Nullable="false" />
+    <Property Name="TotalBarang" Type="int" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="DeleteDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Pembelian">
+    <Key>
+      <PropertyRef Name="IdPembelian" />
+    </Key>
+    <Property Name="IdPembelian" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Penjualan">
+    <Key>
+      <PropertyRef Name="IdPenjualan" />
+    </Key>
+    <Property Name="IdPenjualan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="IdSupplier" />
+    </Key>
+    <Property Name="IdSupplier" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="NamaSupplier" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="DeleteDate" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserAdmin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsDelete" Type="bit" Nullable="false" />
+    <Property Name="CreateDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="DeleteDate" Type="datetime" />
+  </EntityType>
+  <Association Name="FK_Barang_ToSupplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Barang" Type="Self.Barang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="IdSupplier" />
+      </Principal>
+      <Dependent Role="Barang">
+        <PropertyRef Name="IdSupplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Barang_ToUSerAdmin">
+    <End Role="UserAdmin" Type="Self.UserAdmin" Multiplicity="1" />
+    <End Role="Barang" Type="Self.Barang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAdmin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Barang">
+        <PropertyRef Name="IdAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPembelian_ToBarang">
+    <End Role="Barang" Type="Self.Barang" Multiplicity="1" />
+    <End Role="ItemPembelian" Type="Self.ItemPembelian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Barang">
+        <PropertyRef Name="IdBarang" />
+      </Principal>
+      <Dependent Role="ItemPembelian">
+        <PropertyRef Name="IdBarang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPembelian_ToPembelian">
+    <End Role="Pembelian" Type="Self.Pembelian" Multiplicity="1" />
+    <End Role="ItemPembelian" Type="Self.ItemPembelian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pembelian">
+        <PropertyRef Name="IdPembelian" />
+      </Principal>
+      <Dependent Role="ItemPembelian">
+        <PropertyRef Name="IdPembelian" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPembelian_ToUserAdmin">
+    <End Role="UserAdmin" Type="Self.UserAdmin" Multiplicity="1" />
+    <End Role="ItemPembelian" Type="Self.ItemPembelian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAdmin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemPembelian">
+        <PropertyRef Name="IdAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPenjualan_ToAdmin">
+    <End Role="UserAdmin" Type="Self.UserAdmin" Multiplicity="1" />
+    <End Role="ItemPenjualan" Type="Self.ItemPenjualan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAdmin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemPenjualan">
+        <PropertyRef Name="IdAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPenjualan_ToBarang">
+    <End Role="Barang" Type="Self.Barang" Multiplicity="1" />
+    <End Role="ItemPenjualan" Type="Self.ItemPenjualan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Barang">
+        <PropertyRef Name="IdBarang" />
+      </Principal>
+      <Dependent Role="ItemPenjualan">
+        <PropertyRef Name="IdBarang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPenjualan_ToPenjualan">
+    <End Role="Penjualan" Type="Self.Penjualan" Multiplicity="1" />
+    <End Role="ItemPenjualan" Type="Self.ItemPenjualan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Penjualan">
+        <PropertyRef Name="IdPenjualan" />
+      </Principal>
+      <Dependent Role="ItemPenjualan">
+        <PropertyRef Name="IdPenjualan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Final_Task_WPFModelStoreContainer">
+    <EntitySet Name="Barang" EntityType="Self.Barang" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemPembelian" EntityType="Self.ItemPembelian" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ItemPenjualan" EntityType="Self.ItemPenjualan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Pembelian" EntityType="Self.Pembelian" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Penjualan" EntityType="Self.Penjualan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Supplier" EntityType="Self.Supplier" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAdmin" EntityType="Self.UserAdmin" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK_Barang_ToSupplier" Association="Self.FK_Barang_ToSupplier">
+      <End Role="Supplier" EntitySet="Supplier" />
+      <End Role="Barang" EntitySet="Barang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Barang_ToUSerAdmin" Association="Self.FK_Barang_ToUSerAdmin">
+      <End Role="UserAdmin" EntitySet="UserAdmin" />
+      <End Role="Barang" EntitySet="Barang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPembelian_ToBarang" Association="Self.FK_ItemPembelian_ToBarang">
+      <End Role="Barang" EntitySet="Barang" />
+      <End Role="ItemPembelian" EntitySet="ItemPembelian" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPembelian_ToPembelian" Association="Self.FK_ItemPembelian_ToPembelian">
+      <End Role="Pembelian" EntitySet="Pembelian" />
+      <End Role="ItemPembelian" EntitySet="ItemPembelian" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPembelian_ToUserAdmin" Association="Self.FK_ItemPembelian_ToUserAdmin">
+      <End Role="UserAdmin" EntitySet="UserAdmin" />
+      <End Role="ItemPembelian" EntitySet="ItemPembelian" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPenjualan_ToAdmin" Association="Self.FK_ItemPenjualan_ToAdmin">
+      <End Role="UserAdmin" EntitySet="UserAdmin" />
+      <End Role="ItemPenjualan" EntitySet="ItemPenjualan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPenjualan_ToBarang" Association="Self.FK_ItemPenjualan_ToBarang">
+      <End Role="Barang" EntitySet="Barang" />
+      <End Role="ItemPenjualan" EntitySet="ItemPenjualan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPenjualan_ToPenjualan" Association="Self.FK_ItemPenjualan_ToPenjualan">
+      <End Role="Penjualan" EntitySet="Penjualan" />
+      <End Role="ItemPenjualan" EntitySet="ItemPenjualan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

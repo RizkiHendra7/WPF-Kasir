@@ -1,0 +1,195 @@
+﻿<Window x:Class="WPF_CURD_TOKO_HARDWARE_SOFTWARE.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_CURD_TOKO_HARDWARE_SOFTWARE"
+        mc:Ignorable="d"
+        Title="Hardware Store" Height="600" Width="1000 " ResizeMode="NoResize" >
+
+
+
+
+    <Border Padding="10" Background="#FF28353F">
+        <Grid>
+            <!--<Grid Background="Aqua">
+                
+            </Grid>-->
+
+            <!--Tabulasi-->
+            <TabControl Background="#FF575757" BorderBrush="#FF333333">
+                <!--Tab Penjualan-->
+                <TabItem x:Name="TabPenjualan" Header="Penjualan" Padding="10"  Margin="277,4,-308,-35" FontFamily="Bell Gothic Std Black" BorderBrush="#FF448FC9">
+                    <TabItem.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFB3CEE2" Offset="0"/>
+                            <GradientStop Color="#FF1E93EA" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TabItem.Background>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="39*"/>
+                            <ColumnDefinition Width="82*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="images/atribut.png" HorizontalAlignment="Left" Margin="0,-42,0,-21" Width="276" />
+                        <ComboBox x:Name="Penjualan_NamaBarang_comboBox_"  DisplayMemberPath="NamaBarang" SelectedValuePath="IdBarang" SelectedValue="{Binding Idbarang}" HorizontalAlignment="Left" Height="24" Margin="24,133,0,0" VerticalAlignment="Top" Width="234" SelectionChanged="Penjualan_comboBox_NamaBarang_SelectionChanged"   />
+                        <ComboBox x:Name="Penjualan_Supplier_comboBox" DisplayMemberPath="NamaSupplier" SelectedValue="{Binding IdSupplier}" SelectedValuePath="IdSupplier" HorizontalAlignment="Left" Margin="24,72,0,0" VerticalAlignment="Top" Width="234" Height="27" SelectionChanged="Penjualan_kategori_comboBox_SelectionChanged" MouseEnter="Penjualan_Supplier_comboBox_MouseEnter"/>
+                        <Label x:Name="Penjualan_Nama_Kategori" Foreground="AliceBlue"  Content="Nama Suplier" HorizontalAlignment="Left" Margin="24,42,0,0" VerticalAlignment="Top" Height="25" Width="90" FontSize="13.333"/>
+                        <Button x:Name="Penjualan_ADDtoCart_button"   Content="Add To Cart" HorizontalAlignment="Left" Margin="24,328,0,0" VerticalAlignment="Top" Width="234" RenderTransformOrigin="1.667,-4.789" Height="32" Click="Penjualan_ADDtoCart_button_Click" FontSize="13.333"/>
+                        <TextBox x:Name="totalharga_textBox1" HorizontalAlignment="Left" Height="23" Margin="297,458,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118" VerticalContentAlignment="Center" IsUndoEnabled="False" Grid.ColumnSpan="2" IsReadOnly="True"/>
+                        <TextBox x:Name="textBox3" HorizontalAlignment="Left" Height="23" Margin="261,458,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="117" Grid.Column="1" VerticalContentAlignment="Center" IsReadOnly="True"/>
+                        <Label x:Name="Bayar_label6" Content="Bayar" HorizontalAlignment="Left" Margin="123,428,0,0" VerticalAlignment="Top" Grid.Column="1" Foreground="White" FontSize="16" Height="29" Width="61"/>
+                        <Label x:Name="Kembalian_label7" Content="Kembalian " HorizontalAlignment="Left" Margin="261,428,0,0" VerticalAlignment="Top" Grid.Column="1" Foreground="White" FontSize="16" Height="29" Width="117"/>
+                        <Label x:Name="Total_harga_label13" Content="Total Harga" HorizontalAlignment="Left" Margin="297,426,0,0" VerticalAlignment="Top" Foreground="White" FontFamily="Segoe UI Semibold" FontSize="16" Height="31" Width="105" Grid.ColumnSpan="2"/>
+
+                        <TextBox x:Name="Penjualan_JumlahBarang_textBox_" PreviewTextInput="Penjualan_JumlahBarang_textBox__PreviewTextInput" HorizontalAlignment="Left" Height="22" Width="108" Margin="119,237,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontWeight="Normal" FontFamily="Bell Gothic Std Light" TextDecorations="{x:Null}" TextAlignment="Center" VerticalContentAlignment="Center" TextChanged="Penjualan_JumlahBarang_textBox__TextChanged_2"/>
+
+                        <Label x:Name="lab2el1" Foreground="AliceBlue" Content="Jumlah Barang" HorizontalAlignment="Left" Margin="17,237,0,0" VerticalAlignment="Top" Height="25" Width="102" FontSize="13.333"/>
+                        <Label x:Name="lab2el" Foreground="AliceBlue" Content="Nama Barang" HorizontalAlignment="Left" Margin="24,108,0,0" VerticalAlignment="Top" Height="25" Width="90" FontSize="13.333"/>
+                        <Label x:Name="HargaSatuanlabel" Foreground="AliceBlue" Content="Harga " HorizontalAlignment="Left" Margin="24,179,0,0" VerticalAlignment="Top" Height="25" Width="45" FontSize="13.333"/>
+                        <TextBlock x:Name="HargaSatuantextBlock" Foreground="AliceBlue" HorizontalAlignment="Left" Margin="74,182,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="22" Width="69" FontSize="13.333"/>
+
+                        <TextBox x:Name="textBox2" HorizontalAlignment="Left" Height="23" Margin="123,458,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.Column="1" VerticalContentAlignment="Center" TextChanged="textBox2_TextChanged"/>
+
+                        <Button x:Name="Penjualan_button_Save" Content="Save" HorizontalAlignment="Left" Margin="405,427,0,0" VerticalAlignment="Top" Width="212" Height="54" Grid.Column="1" FontSize="18.667" Click="Penjualan_button_Save_Click"/>
+                        <DataGrid x:Name="dataGrid"  HorizontalAlignment="Left" Height="322" Margin="10,66,0,0" VerticalAlignment="Top" Width="610" Grid.Column="1" SelectionChanged="dataGrid_SelectionChanged" BorderBrush="Black">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="id" Binding="{Binding Path=id}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Nama Barang" Binding="{Binding Path=namabarang}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Jumlah Barang" Binding="{Binding Path=jumlah}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Harga Barang" Binding="{Binding Path=harga}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Total Harga" Binding="{Binding Path=jumlahtotal}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+                        </DataGrid>
+
+                    </Grid>
+                </TabItem>
+
+                <!--Tab Pembelian-->
+                <TabItem x:Name="TabPembelian"  Header="Pembelian" Padding="5" Margin="307,4,-339,-35" FontWeight="Bold" FontFamily="Bell Gothic Std Black" BorderBrush="#FF2396EE">
+                    <TabItem.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFB3CEFF" Offset="0"/>
+                            <GradientStop Color="#FF1E93EA" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TabItem.Background>
+
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="309*"/>
+                            <ColumnDefinition Width="96*"/>
+                            <ColumnDefinition Width="308*"/>
+                            <ColumnDefinition Width="255*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="images/atribut.png" HorizontalAlignment="Left" Margin="0,-42,0,-21" Width="276" />
+                        <ComboBox x:Name="Pembelian_comboBox_NamaBarang" DisplayMemberPath="NamaBarang" SelectedValue="{Binding IdBarang}" SelectedValuePath="IdBarang" HorizontalAlignment="Left" Height="27" Margin="24,133,0,0" VerticalAlignment="Top" Width="234" SelectionChanged="Pembelian_comboBox_NamaBarang_SelectionChanged"/>
+                        <ComboBox x:Name="Pembelian_comboBox_nmaSupp" DisplayMemberPath="NamaSupplier" SelectedValuePath="IdSupplier" SelectedValue="{Binding IdSupplier}" HorizontalAlignment="Left" Margin="24,74,0,0" VerticalAlignment="Top" Width="234" Height="26" MouseEnter="Pembelian_comboBox_nmaSupp_MouseEnter" Foreground="#FF4778C7" BorderBrush="#FF4778C7" Background="#FF4778C7" SelectionChanged="Pembelian_comboBox_nmaSupp_SelectionChanged"/>
+                        <Button x:Name="AddToCart_button" Content="Add To Cart" HorizontalAlignment="Left" Margin="24,281,0,0" VerticalAlignment="Top" Width="234" Height="37" Click="AddToCart_button_Click"/>
+
+                        <TextBox x:Name="Pembelian_textBox_qty" HorizontalAlignment="Left" Height="28" Width="234" Margin="24,201,0,0" TextWrapping="Wrap" VerticalAlignment="Top"  FontWeight="Normal" FontFamily="Bell Gothic Std Light" TextDecorations="{x:Null}" TextAlignment="Center" VerticalContentAlignment="Center" Background="White" BorderBrush="#FF4778C7" Foreground="#FF4778C7" SelectionBrush="#FF4778C7" PreviewTextInput="Pembelian_textBox_qty_PreviewTextInput"/>
+
+                        <Label x:Name="label1" Foreground="AliceBlue" Content="Nama Supplier" HorizontalAlignment="Left" Margin="24,49,0,0" VerticalAlignment="Top" Height="25" Width="102" FontSize="13.333"/>
+                        <Label x:Name="label" Foreground="AliceBlue" Content="Nama Barang" HorizontalAlignment="Left" Margin="24,108,0,0" VerticalAlignment="Top" Height="25" Width="102" FontSize="13.333"/>
+                        <Button x:Name="Pembelian_button_Save" Content="Save" HorizontalAlignment="Left" Margin="24,354,0,0" VerticalAlignment="Top" Width="146" Height="48" Click="Pembelian_button_Save_Click"/>
+                        <Label x:Name="label9" Content="QTY" Foreground="AliceBlue" HorizontalAlignment="Left" Margin="24,176,0,0" VerticalAlignment="Top" Height="25" Width="44" FontSize="13.333"/>
+                        <DataGrid x:Name="Pembelian_dataGrid" HorizontalAlignment="Left" Height="407" Margin="0,63,0,0" VerticalAlignment="Top" Width="636" Grid.ColumnSpan="3" Grid.Column="1" BorderBrush="Black">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Header="Id" Binding="{Binding Path=idkategori}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Nama Barang" Binding="{Binding Path=namabarang}"></DataGridTextColumn>
+                                <DataGridTextColumn Header="Jumlah Barang" Binding="{Binding Path=jumlahbarang}"></DataGridTextColumn>
+                            </DataGrid.Columns>
+
+                        </DataGrid>
+
+                    </Grid>
+                </TabItem>
+
+
+
+                <!--<kategori>-->
+
+                <!--barang-->
+                <TabItem x:Name="TabBarang" Header="Barang" Padding="10"   Margin="339,4,-383,-35" FontFamily="Bell Gothic Std Black" BorderBrush="#FF267BBB">
+                    <TabItem.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFB3CEE2"/>
+                            <GradientStop Color="#FF1F93EA" Offset="0.992"/>
+                        </LinearGradientBrush>
+                    </TabItem.Background>
+                    <Grid>
+
+
+
+
+                        <TextBox x:Name="textBox" HorizontalAlignment="Left" Height="23" Margin="105,130,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+
+                        <Image Source="images/atribut.png" HorizontalAlignment="Left" Margin="0,-42,0,-21" Width="276" />
+                        <ComboBox x:Name="Barang_NMKategori_comboBox" HorizontalAlignment="Left" Margin="23,138,0,0" DisplayMemberPath="NamaSupplier" SelectedValuePath="IdSupplier" SelectedValue="{Binding IdSupplier}"  VerticalAlignment="Top" Height="30" Width="234" SelectionChanged="NMKategori_Barang_comboBox_SelectionChanged" MouseEnter="Barang_NMKategori_comboBox_MouseEnter"/>
+                        <TextBox x:Name="Barang_NMBarang_textBox" HorizontalAlignment="Left" Height="30" Width="234" Margin="23,212,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="Barang_NMBarang_textBox_TextChanged" VerticalContentAlignment="Center" />
+                        <TextBox x:Name="Barang_Stok_textBox1" HorizontalAlignment="Left" Height="30" Width="234" Margin="23,280,0,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" PreviewTextInput="Barang_Stok_textBox1_PreviewTextInput"/>
+                        <TextBox x:Name="Barang_HrgSatuan_textBox2" HorizontalAlignment="Left" Height="28" Width="234" Margin="24,340,0,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" PreviewTextInput="Barang_HrgSatuan_textBox2_PreviewTextInput" />
+                        <Button x:Name="Barang_button_Save" Content="Save" HorizontalAlignment="Left" Margin="24,391,0,0" VerticalAlignment="Top" Width="68" Height="28" Click="Barang_button_Save_Click_1"/>
+                        <Button x:Name="Barang_button_Update" Content="Update" HorizontalAlignment="Left" Margin="109,391,0,0" VerticalAlignment="Top" Width="68" Height="28" Click="Barang_button_Update_Click"/>
+                        <Button x:Name="Barang_button_IsDelete" Content="Delete" HorizontalAlignment="Left" Margin="190,391,0,0" VerticalAlignment="Top" Width="68" Height="28" Click="Barang_button_IsDelete_Click"/>
+                        <Label x:Name="label2" Foreground="AliceBlue" Content="Nama Supplier" HorizontalAlignment="Left" Margin="24,113,0,0" VerticalAlignment="Top" FontSize="13.333"/>
+                        <Label x:Name="label3" Foreground="AliceBlue" Content="Nama Barang" HorizontalAlignment="Left" Margin="23,182,0,0" VerticalAlignment="Top" FontSize="13.333"/>
+                        <Label x:Name="label4" Foreground="AliceBlue" Content="Stok" HorizontalAlignment="Left" Margin="23,250,0,0" VerticalAlignment="Top" FontSize="13.333"/>
+                        <Label x:Name="label5" Foreground="AliceBlue" Content="Harga Satuan" HorizontalAlignment="Left" Margin="23,315,0,0" VerticalAlignment="Top" FontSize="13.333"/>
+                        <DataGrid x:Name="Barang_dataGrid" HorizontalAlignment="Left" Height="399" Margin="309,66,0,0" VerticalAlignment="Top" Width="631" SelectionChanged="Barang_dataGrid_SelectionChanged" BorderBrush="Black"/>
+                        <TextBox x:Name="IdadmintextBox1" HorizontalAlignment="Left" Height="32" Margin="152,68,0,0" TextWrapping="Wrap" Text="Admin" VerticalAlignment="Top" Width="93" VerticalContentAlignment="Center"/>
+                        <Label x:Name="label12" Content="ID" Foreground="AliceBlue" HorizontalAlignment="Left" Margin="24,73,0,0" VerticalAlignment="Top"/>
+                        <TextBox x:Name="ID_Barang_textBox1" HorizontalAlignment="Left" Height="30" Margin="51,68,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67" VerticalContentAlignment="Center"/>
+
+
+
+                    </Grid>
+                </TabItem>
+
+                <!--supplier-->
+                <TabItem x:Name="TabSupplier" Header="Supplier" Padding="10"  Margin="383,4,-420,-35" FontFamily="Bell Gothic Std Black" BorderBrush="#FF217EC5">
+
+                    <TabItem.Background>
+                        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                            <GradientStop Color="#FFB3CEE2" Offset="0"/>
+                            <GradientStop Color="#FF1F93EA" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TabItem.Background>
+
+                    <Grid>
+
+                        <Image Source="images/atribut.png" HorizontalAlignment="Left" Margin="0,-42,0,-21" Width="276" />
+                        <TextBox x:Name="Supplier_id_textBox" HorizontalAlignment="Left" Height="36" Width="234" Margin="24,80,0,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+
+
+                        <TextBox x:Name="Supplier_textBox" HorizontalAlignment="Left" Height="36" Width="234" Margin="23,160,0,0" TextWrapping="Wrap" VerticalAlignment="Top" VerticalContentAlignment="Center" />
+                        <Label x:Name="label8" Foreground="AliceBlue" Content="Id Supplier" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="23,50,0,0"/>
+                        <Button x:Name="Supplier_button_Save" Content="Save" HorizontalAlignment="Left" Margin="24,391,0,0" VerticalAlignment="Top" Width="68" Height="28" Click="Supplier_button_Save_Click"/>
+                        <Button x:Name="Supplier_button_Update" Content="Update" HorizontalAlignment="Left" Margin="109,391,0,0" VerticalAlignment="Top" Width="68" Height="28" Click="Supplier_button_Update_Click"/>
+                        <Button x:Name="Supplier_button_IsDelete" Content="Delete" HorizontalAlignment="Left" Margin="190,391,0,0" VerticalAlignment="Top" Width="68" Height="28" Click="Supplier_button_IsDelete_Click_1"/>
+                        <DataGrid x:Name="Supplier_dataGrid1" HorizontalAlignment="Left" Margin="309,0,0,44" VerticalAlignment="Bottom" Height="399" Width="630" RenderTransformOrigin="0.5,0.5" SelectionChanged="Supplier_dataGrid1_SelectionChanged_1">
+                            <DataGrid.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform/>
+                                    <SkewTransform AngleX="-0.145"/>
+                                    <RotateTransform/>
+                                    <TranslateTransform X="-0.497"/>
+                                </TransformGroup>
+                            </DataGrid.RenderTransform>
+                        </DataGrid>
+                        <Label x:Name="label11" Foreground="AliceBlue" Content="Nama Supplier" HorizontalAlignment="Left" Margin="24,130,0,0" VerticalAlignment="Top"/>
+
+                    </Grid>
+
+                </TabItem>
+
+
+            </TabControl>
+            <Image Source="images/Logo.png"  Width="280" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="0,2,0,0" Height="72" />
+            <Button x:Name="Log_Out" Content="Log Out" HorizontalAlignment="Left" Height="51" Margin="23,474,0,0" VerticalAlignment="Top" Width="244" Click="Log_Out_Click"/>
+            <TextBlock x:Name="Nama_Login"  Foreground="AliceBlue" HorizontalAlignment="Left" Margin="845,3,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" FontFamily="Segoe UI Black" FontSize="18.667"/>
+
+
+
+        </Grid>
+    </Border>
+</Window>

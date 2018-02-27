@@ -1,0 +1,94 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Final_Task_WPFModelStoreContainer" CdmEntityContainer="Final_Task_WPFEntities4">
+    <EntitySetMapping Name="Barang">
+      <EntityTypeMapping TypeName="Final_Task_WPFModel.Barang">
+        <MappingFragment StoreEntitySet="Barang">
+          <ScalarProperty Name="IdBarang" ColumnName="IdBarang" />
+          <ScalarProperty Name="IdSupplier" ColumnName="IdSupplier" />
+          <ScalarProperty Name="IdAdmin" ColumnName="IdAdmin" />
+          <ScalarProperty Name="NamaBarang" ColumnName="NamaBarang" />
+          <ScalarProperty Name="Stok" ColumnName="Stok" />
+          <ScalarProperty Name="HargaSatuan" ColumnName="HargaSatuan" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemPembelian">
+      <EntityTypeMapping TypeName="Final_Task_WPFModel.ItemPembelian">
+        <MappingFragment StoreEntitySet="ItemPembelian">
+          <ScalarProperty Name="IdItemPembelian" ColumnName="IdItemPembelian" />
+          <ScalarProperty Name="IdPembelian" ColumnName="IdPembelian" />
+          <ScalarProperty Name="IdAdmin" ColumnName="IdAdmin" />
+          <ScalarProperty Name="IdBarang" ColumnName="IdBarang" />
+          <ScalarProperty Name="TotalHarga" ColumnName="TotalHarga" />
+          <ScalarProperty Name="QTY" ColumnName="QTY" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ItemPenjualan">
+      <EntityTypeMapping TypeName="Final_Task_WPFModel.ItemPenjualan">
+        <MappingFragment StoreEntitySet="ItemPenjualan">
+          <ScalarProperty Name="IdItemPenjualan" ColumnName="IdItemPenjualan" />
+          <ScalarProperty Name="IdPenjualan" ColumnName="IdPenjualan" />
+          <ScalarProperty Name="IdBarang" ColumnName="IdBarang" />
+          <ScalarProperty Name="IdAdmin" ColumnName="IdAdmin" />
+          <ScalarProperty Name="TotalBarang" ColumnName="TotalBarang" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Pembelian">
+      <EntityTypeMapping TypeName="Final_Task_WPFModel.Pembelian">
+        <MappingFragment StoreEntitySet="Pembelian">
+          <ScalarProperty Name="IdPembelian" ColumnName="IdPembelian" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Penjualan">
+      <EntityTypeMapping TypeName="Final_Task_WPFModel.Penjualan">
+        <MappingFragment StoreEntitySet="Penjualan">
+          <ScalarProperty Name="IdPenjualan" ColumnName="IdPenjualan" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Supplier">
+      <EntityTypeMapping TypeName="Final_Task_WPFModel.Supplier">
+        <MappingFragment StoreEntitySet="Supplier">
+          <ScalarProperty Name="IdSupplier" ColumnName="IdSupplier" />
+          <ScalarProperty Name="NamaSupplier" ColumnName="NamaSupplier" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="UserAdmin">
+      <EntityTypeMapping TypeName="Final_Task_WPFModel.UserAdmin">
+        <MappingFragment StoreEntitySet="UserAdmin">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="Username" ColumnName="Username" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="IsDelete" ColumnName="IsDelete" />
+          <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="DeleteDate" ColumnName="DeleteDate" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

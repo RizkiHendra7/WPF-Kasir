@@ -1,0 +1,238 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="Final_Task_WPFModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Barang">
+    <Key>
+      <PropertyRef Name="IdBarang" />
+    </Key>
+    <Property Name="IdBarang" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdSupplier" Type="Int32" Nullable="false" />
+    <Property Name="IdAdmin" Type="Int32" Nullable="false" />
+    <Property Name="NamaBarang" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Stok" Type="Int32" Nullable="false" />
+    <Property Name="HargaSatuan" Type="Int32" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Supplier" Relationship="Self.FK_Barang_ToSupplier" FromRole="Barang" ToRole="Supplier" />
+    <NavigationProperty Name="UserAdmin" Relationship="Self.FK_Barang_ToUSerAdmin" FromRole="Barang" ToRole="UserAdmin" />
+    <NavigationProperty Name="ItemPembelian" Relationship="Self.FK_ItemPembelian_ToBarang" FromRole="Barang" ToRole="ItemPembelian" />
+    <NavigationProperty Name="ItemPenjualan" Relationship="Self.FK_ItemPenjualan_ToBarang" FromRole="Barang" ToRole="ItemPenjualan" />
+  </EntityType>
+  <EntityType Name="ItemPembelian">
+    <Key>
+      <PropertyRef Name="IdItemPembelian" />
+    </Key>
+    <Property Name="IdItemPembelian" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdPembelian" Type="Int32" Nullable="false" />
+    <Property Name="IdAdmin" Type="Int32" Nullable="false" />
+    <Property Name="IdBarang" Type="Int32" Nullable="false" />
+    <Property Name="TotalHarga" Type="Int32" Nullable="false" />
+    <Property Name="QTY" Type="Int32" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Barang" Relationship="Self.FK_ItemPembelian_ToBarang" FromRole="ItemPembelian" ToRole="Barang" />
+    <NavigationProperty Name="Pembelian" Relationship="Self.FK_ItemPembelian_ToPembelian" FromRole="ItemPembelian" ToRole="Pembelian" />
+    <NavigationProperty Name="UserAdmin" Relationship="Self.FK_ItemPembelian_ToUserAdmin" FromRole="ItemPembelian" ToRole="UserAdmin" />
+  </EntityType>
+  <EntityType Name="ItemPenjualan">
+    <Key>
+      <PropertyRef Name="IdItemPenjualan" />
+    </Key>
+    <Property Name="IdItemPenjualan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="IdPenjualan" Type="Int32" Nullable="false" />
+    <Property Name="IdBarang" Type="Int32" Nullable="false" />
+    <Property Name="IdAdmin" Type="Int32" Nullable="false" />
+    <Property Name="TotalBarang" Type="Int32" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Barang" Relationship="Self.FK_ItemPenjualan_ToBarang" FromRole="ItemPenjualan" ToRole="Barang" />
+    <NavigationProperty Name="UserAdmin" Relationship="Self.FK_ItemPenjualan_ToAdmin" FromRole="ItemPenjualan" ToRole="UserAdmin" />
+    <NavigationProperty Name="Penjualan" Relationship="Self.FK_ItemPenjualan_ToPenjualan" FromRole="ItemPenjualan" ToRole="Penjualan" />
+  </EntityType>
+  <EntityType Name="Pembelian">
+    <Key>
+      <PropertyRef Name="IdPembelian" />
+    </Key>
+    <Property Name="IdPembelian" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ItemPembelian" Relationship="Self.FK_ItemPembelian_ToPembelian" FromRole="Pembelian" ToRole="ItemPembelian" />
+  </EntityType>
+  <EntityType Name="Penjualan">
+    <Key>
+      <PropertyRef Name="IdPenjualan" />
+    </Key>
+    <Property Name="IdPenjualan" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ItemPenjualan" Relationship="Self.FK_ItemPenjualan_ToPenjualan" FromRole="Penjualan" ToRole="ItemPenjualan" />
+  </EntityType>
+  <EntityType Name="Supplier">
+    <Key>
+      <PropertyRef Name="IdSupplier" />
+    </Key>
+    <Property Name="IdSupplier" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="NamaSupplier" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Barang" Relationship="Self.FK_Barang_ToSupplier" FromRole="Supplier" ToRole="Barang" />
+  </EntityType>
+  <EntityType Name="UserAdmin">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="IsDelete" Type="Boolean" Nullable="false" />
+    <Property Name="CreateDate" Type="DateTime" Precision="3" />
+    <Property Name="UpdateDate" Type="DateTime" Precision="3" />
+    <Property Name="DeleteDate" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Barang" Relationship="Self.FK_Barang_ToUSerAdmin" FromRole="UserAdmin" ToRole="Barang" />
+    <NavigationProperty Name="ItemPembelian" Relationship="Self.FK_ItemPembelian_ToUserAdmin" FromRole="UserAdmin" ToRole="ItemPembelian" />
+    <NavigationProperty Name="ItemPenjualan" Relationship="Self.FK_ItemPenjualan_ToAdmin" FromRole="UserAdmin" ToRole="ItemPenjualan" />
+  </EntityType>
+  <Association Name="FK_Barang_ToSupplier">
+    <End Role="Supplier" Type="Self.Supplier" Multiplicity="1" />
+    <End Role="Barang" Type="Self.Barang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Supplier">
+        <PropertyRef Name="IdSupplier" />
+      </Principal>
+      <Dependent Role="Barang">
+        <PropertyRef Name="IdSupplier" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Barang_ToUSerAdmin">
+    <End Role="UserAdmin" Type="Self.UserAdmin" Multiplicity="1" />
+    <End Role="Barang" Type="Self.Barang" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAdmin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="Barang">
+        <PropertyRef Name="IdAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPembelian_ToBarang">
+    <End Role="Barang" Type="Self.Barang" Multiplicity="1" />
+    <End Role="ItemPembelian" Type="Self.ItemPembelian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Barang">
+        <PropertyRef Name="IdBarang" />
+      </Principal>
+      <Dependent Role="ItemPembelian">
+        <PropertyRef Name="IdBarang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPenjualan_ToBarang">
+    <End Role="Barang" Type="Self.Barang" Multiplicity="1" />
+    <End Role="ItemPenjualan" Type="Self.ItemPenjualan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Barang">
+        <PropertyRef Name="IdBarang" />
+      </Principal>
+      <Dependent Role="ItemPenjualan">
+        <PropertyRef Name="IdBarang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPembelian_ToPembelian">
+    <End Role="Pembelian" Type="Self.Pembelian" Multiplicity="1" />
+    <End Role="ItemPembelian" Type="Self.ItemPembelian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Pembelian">
+        <PropertyRef Name="IdPembelian" />
+      </Principal>
+      <Dependent Role="ItemPembelian">
+        <PropertyRef Name="IdPembelian" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPembelian_ToUserAdmin">
+    <End Role="UserAdmin" Type="Self.UserAdmin" Multiplicity="1" />
+    <End Role="ItemPembelian" Type="Self.ItemPembelian" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAdmin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemPembelian">
+        <PropertyRef Name="IdAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPenjualan_ToAdmin">
+    <End Role="UserAdmin" Type="Self.UserAdmin" Multiplicity="1" />
+    <End Role="ItemPenjualan" Type="Self.ItemPenjualan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserAdmin">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="ItemPenjualan">
+        <PropertyRef Name="IdAdmin" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ItemPenjualan_ToPenjualan">
+    <End Role="Penjualan" Type="Self.Penjualan" Multiplicity="1" />
+    <End Role="ItemPenjualan" Type="Self.ItemPenjualan" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Penjualan">
+        <PropertyRef Name="IdPenjualan" />
+      </Principal>
+      <Dependent Role="ItemPenjualan">
+        <PropertyRef Name="IdPenjualan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="Final_Task_WPFEntities4" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Barang" EntityType="Self.Barang" />
+    <EntitySet Name="ItemPembelian" EntityType="Self.ItemPembelian" />
+    <EntitySet Name="ItemPenjualan" EntityType="Self.ItemPenjualan" />
+    <EntitySet Name="Pembelian" EntityType="Self.Pembelian" />
+    <EntitySet Name="Penjualan" EntityType="Self.Penjualan" />
+    <EntitySet Name="Supplier" EntityType="Self.Supplier" />
+    <EntitySet Name="UserAdmin" EntityType="Self.UserAdmin" />
+    <AssociationSet Name="FK_Barang_ToSupplier" Association="Self.FK_Barang_ToSupplier">
+      <End Role="Supplier" EntitySet="Supplier" />
+      <End Role="Barang" EntitySet="Barang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Barang_ToUSerAdmin" Association="Self.FK_Barang_ToUSerAdmin">
+      <End Role="UserAdmin" EntitySet="UserAdmin" />
+      <End Role="Barang" EntitySet="Barang" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPembelian_ToBarang" Association="Self.FK_ItemPembelian_ToBarang">
+      <End Role="Barang" EntitySet="Barang" />
+      <End Role="ItemPembelian" EntitySet="ItemPembelian" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPenjualan_ToBarang" Association="Self.FK_ItemPenjualan_ToBarang">
+      <End Role="Barang" EntitySet="Barang" />
+      <End Role="ItemPenjualan" EntitySet="ItemPenjualan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPembelian_ToPembelian" Association="Self.FK_ItemPembelian_ToPembelian">
+      <End Role="Pembelian" EntitySet="Pembelian" />
+      <End Role="ItemPembelian" EntitySet="ItemPembelian" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPembelian_ToUserAdmin" Association="Self.FK_ItemPembelian_ToUserAdmin">
+      <End Role="UserAdmin" EntitySet="UserAdmin" />
+      <End Role="ItemPembelian" EntitySet="ItemPembelian" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPenjualan_ToAdmin" Association="Self.FK_ItemPenjualan_ToAdmin">
+      <End Role="UserAdmin" EntitySet="UserAdmin" />
+      <End Role="ItemPenjualan" EntitySet="ItemPenjualan" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ItemPenjualan_ToPenjualan" Association="Self.FK_ItemPenjualan_ToPenjualan">
+      <End Role="Penjualan" EntitySet="Penjualan" />
+      <End Role="ItemPenjualan" EntitySet="ItemPenjualan" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>
